@@ -49,5 +49,14 @@ public class PromotionEngineImplTest {
 		
 	}
 	
+	@Test
+	void testGetDiscountPriceOnCart_Scenario3() {
+		
+		List<CartItem> cart = Arrays.asList(new CartItem("A", 3), new CartItem("B", 5), new CartItem("C", 1), new CartItem("D", 1));
+		
+		assertEquals(280.0, promotions.getDiscountPriceOnCart(cart, availablePromotions, products));
+		
+	}
+	
 
 }
