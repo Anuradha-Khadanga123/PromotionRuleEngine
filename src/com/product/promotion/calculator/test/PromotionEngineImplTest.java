@@ -1,10 +1,14 @@
 package com.product.promotion.calculator.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.product.core.CartItem;
 import com.product.core.Product;
 import com.product.promotion.calculator.PromotionEngineImpl;
 import com.product.promotions.Promotion;
@@ -28,10 +32,14 @@ public class PromotionEngineImplTest {
 														new Promotion(Arrays.asList(new PromotionCriteria(1,"C"),new PromotionCriteria(1,"D")), 30));
 	
 	@Test
-	void testGetDiscountPriceOnCart() {
+	void testGetDiscountPriceOnCart_Scenario1() {
 		
+		List<CartItem> cart = Arrays.asList(new CartItem("A", 1), new CartItem("B", 1), new CartItem("C", 1), new CartItem("D", 0));
 		
+		assertEquals(100.0, promotions.getDiscountPriceOnCart(cart, availablePromotions, products));
 		
 	}
+	
+	
 
 }
