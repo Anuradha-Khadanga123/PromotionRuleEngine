@@ -50,7 +50,21 @@ public class PromotionEngineImpl implements PromotionEngine{
 				checkForDiscounts = false;
 			}
 		}
-		return 0;
+		
+		/*
+		 * Calculates price for items where discount is not applicable
+		 */
+		
+		List<Double> price = cartMap.entrySet().stream().map(p -> productPriceMap.get(p.getKey()) * p.getValue()).collect(Collectors.toList());
+		
+		discountedPrice.addAll(price);
+		
+		/*
+		 * Returns the total price of the cart
+		 */
+		Double totalPrice = discountedPrice.stream().collect(Collectors.summingDouble(p -> p));
+		
+		return totalPrice;
 	}
 	
 	/*
