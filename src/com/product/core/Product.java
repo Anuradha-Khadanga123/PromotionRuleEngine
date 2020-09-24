@@ -5,6 +5,12 @@ public class Product {
 	private String SKUId;
 	private double price;
 	
+	
+	public Product(String sKUId, double price) {
+		super();
+		SKUId = sKUId;
+		this.price = price;
+	}
 	public String getSKUId() {
 		return SKUId;
 	}
@@ -17,5 +23,5 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
+	
 }
