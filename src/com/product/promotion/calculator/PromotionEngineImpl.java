@@ -46,14 +46,19 @@ public class PromotionEngineImpl implements PromotionEngine{
 				});
 				
 				discountedPrice.add(matchedPromotion.get().getDiscountedPrice());
+			}else {
+				checkForDiscounts = false;
 			}
 		}
 		return 0;
 	}
-
+	
+	/*
+	 * Returns true if the discount is applicable as per conditions
+	 */
 	public boolean isCriteriaSaticefy(List<PromotionCriteria> criterias, Map<String, Integer> cartMap) {
-		// TODO Auto-generated method stub
-		return true;
+		
+		return criterias.stream().allMatch(p -> cartMap.containsKey(p.getSkuId()) && cartMap.get(p.getSkuId()) >= p.getQuantity());
 	}
 
 }
