@@ -58,5 +58,15 @@ public class PromotionEngineImplTest {
 		
 	}
 	
+	@Test
+	void testGetDiscountPriceOnCart_Scenario4_Null() {
+		
+		List<CartItem> cart = Arrays.asList(new CartItem(null, 3), new CartItem("B", 5), new CartItem("C", 1), new CartItem("D", 1));
+		
+		assertThrows(NullPointerException.class, () -> {
+			promotions.getDiscountPriceOnCart(cart, availablePromotions, products);	
+		});
+		
+	}
 
 }
