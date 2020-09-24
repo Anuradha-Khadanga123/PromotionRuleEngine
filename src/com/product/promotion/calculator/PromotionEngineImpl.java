@@ -37,6 +37,16 @@ public class PromotionEngineImpl implements PromotionEngine{
 		while(checkForDiscounts) {
 			
 			Optional<Promotion> matchedPromotion = promotions.stream().filter(p -> isCriteriaSaticefy(p.getCriterias(), cartMap)).findFirst();
+			/*
+			 * Validating the available promotions and adding the discounted price to list
+			 */
+			if(matchedPromotion.isPresent()) {
+				matchedPromotion.get().getCriterias().forEach(cr -> {
+					cartMap.put(cr.getSkuId(), cartMap.get(cr.getSkuId())- cr.getQuantity());
+				});
+				
+				discountedPrice.add(matchedPromotion.get().getDiscountedPrice());
+			}
 		}
 		return 0;
 	}
