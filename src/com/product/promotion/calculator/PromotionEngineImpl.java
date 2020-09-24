@@ -17,7 +17,10 @@ public class PromotionEngineImpl implements PromotionEngine{
 		 */
 		Map<String,Double> productPriceMap = products.stream().collect(Collectors.toMap(Product::getSKUId, Product::getPrice));
 		
-		
+		/*
+		 * Getting the list of items in the cart
+		 */
+		Map<String, Integer> cartMap = cart.stream().collect(Collectors.toMap(CartItem::getSkuId, CartItem::getQuantity));
 		return 0;
 	}
 
